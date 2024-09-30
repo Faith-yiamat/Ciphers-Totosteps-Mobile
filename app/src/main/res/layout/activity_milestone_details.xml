@@ -8,11 +8,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/purple"
+        android:padding="16dp"
+        android:layout_marginTop="40dp"
         android:text="Milestones"
-        android:textSize="24sp"
+        android:fontFamily="@font/nunito_black"
         android:textColor="#FFFFFF"
-        android:background="#800080"
-        android:padding="16dp"/>
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/tvMilestoneDescription"
@@ -20,6 +23,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:padding="16dp"
+        android:fontFamily="@font/nunito_medium"
         android:textColor="#000000"/>
 
     <androidx.cardview.widget.CardView
@@ -40,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/nunito_medium"
                 android:textColor="#000000"/>
 
             <TextView
@@ -49,6 +54,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#000000"
+                android:fontFamily="@font/nunito_medium"
                 android:layout_marginTop="8dp"/>
 
             <TextView
@@ -57,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="#000000"
+                android:fontFamily="@font/nunito_medium"
                 android:layout_marginTop="8dp"/>
 
         </LinearLayout>
