@@ -5,12 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    >
+    android:background="@android:color/white">
 
     <View
         android:id="@+id/purpleBackground"
-        android:layout_width="419dp"
+        android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginTop="32dp"
         android:background="@color/purple"
@@ -24,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:padding="16dp"
-        android:text="Children"
+        android:text="Milestones for Children"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -54,7 +53,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="220dp"
         android:fontFamily="@font/nunito_black"
-        android:text="Baby at 2 Months"
+        android:text="Milestones at 2 Years"
         android:textColor="@android:color/black"
         android:textSize="27sp"
         android:textStyle="bold"
@@ -65,109 +64,27 @@
 
     <TextView
         android:id="@+id/subtitleTextView"
-        android:layout_width="383dp"
-        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/nunito"
-        android:text="Here's a quick look at all milestones most children reach by 2 months:"
+        android:text="Here's a look at milestones for 2-year-olds:"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/milestoneTitleTextView" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/socialMilestonesCard"
-        android:layout_width="372dp"
-        android:layout_height="204dp"
-        android:layout_marginStart="16dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMilestones"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardBackgroundColor="#F1DAE9"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/subtitleTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/subtitleTextView">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/socialMilestonesTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Social Milestones:"
-                android:fontFamily="@font/nunito_medium"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/socialMilestonesDetails"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="• Calms down when spoken to or picked up\n• Looks at your face\n\n• Seems happy to see you when you walk up to him"
-                android:textColor="@android:color/black"
-                android:fontFamily="@font/nunito"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/socialMilestonesTitle" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Language Milestones Card -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/languageMilestonesCard"
-        android:layout_width="381dp"
-        android:layout_height="122dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardBackgroundColor="#F1DAE9"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/socialMilestonesCard">
+        />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <TextView
-                android:id="@+id/languageMilestonesTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/nunito_medium"
-                android:text="Language Milestones:"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/languageMilestonesDetails"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito"
-                android:text="• Makes sounds other than crying\n• Reacts to loud sounds"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/languageMilestonesTitle" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

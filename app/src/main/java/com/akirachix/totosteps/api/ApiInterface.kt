@@ -3,6 +3,7 @@ package com.akirachix.totosteps.api
 import com.akirachix.totosteps.models.Answer
 import com.akirachix.totosteps.models.LoginRequest
 import com.akirachix.totosteps.models.LoginResponse
+import com.akirachix.totosteps.models.Milestone
 import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.RegistrationResponse
 import com.akirachix.totosteps.models.UserRegistration
@@ -29,7 +30,8 @@ interface ApiInterface {
     @GET("/api/resources")
     suspend fun getResources(): Response<List<resources>>
 
-
+    @GET("api/milestones/")
+    fun getMilestones(): Call<List<Milestone>>
 
 
 
