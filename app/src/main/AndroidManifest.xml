@@ -19,6 +19,12 @@
         android:theme="@style/Theme.TotoSteps"
         tools:targetApi="31">
         <activity
+            android:name=".MilestoneAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".MilestoneDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ResourceDetailsActivity"
             android:exported="false" />
         <activity
