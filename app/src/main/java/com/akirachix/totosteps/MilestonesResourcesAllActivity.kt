@@ -33,18 +33,54 @@ class MilestonesResourcesAllActivity : AppCompatActivity() {
 
     }
 
-    fun displayResources(){
-        val resource1 = resources("","Baby at  2 Months")
-        val resource2 = resources("","Baby at  4 Months")
-        val resource3 = resources("","Baby at  6 Months")
-        val resource4 = resources("","Baby at  8 Months")
-        val resource5 = resources("","Baby at  10 Months")
-        val resource6 = resources("","Baby at  12 Months")
-        val resource7 = resources("","Baby at  14 Months")
+    fun displayResources() {
+        val resource1 = resources(
+            "Teach your child how to crawl and walk",
+            "https://example.com/image1.jpg",  // Add the image URL or path here
+            listOf("Tip 1", "Tip 2"),
+            listOf("Activity 1", "Activity 2")
+        )
+        val resource2 = resources(
+            "Teach your child how to crawl and walk",
+            "https://example.com/image2.jpg",
+            listOf("Tip 3", "Tip 4"),
+            listOf("Activity 3", "Activity 4")
+        )
+        val resource3 = resources(
+            "Teach your child how to crawl and walk",
+            "https://example.com/image3.jpg",
+            listOf("Tip 5", "Tip 6"),
+            listOf("Activity 5", "Activity 6")
+        )
+        val resource4 = resources(
+            "Teach your child how to crawl and walk",
+            "https://example.com/image4.jpg",
+            listOf("Tip 7", "Tip 8"),
+            listOf("Activity 7", "Activity 8")
+        )
+        val resource5 = resources(
+            "Teach your child how to crawl and walk",
+            "https://example.com/image5.jpg",
+            listOf("Tip 9", "Tip 10"),
+            listOf("Activity 9", "Activity 10")
+        )
+        val resource6 = resources(
+            "Teach your child how to crawl and walk",
+            "https://example.com/image6.jpg",
+            listOf("Tip 11", "Tip 12"),
+            listOf("Activity 11", "Activity 12")
+        )
+        val resource7 = resources(
+            "Teach your child how to crawl and walk",
+            "https://example.com/image7.jpg",
+            listOf("Tip 13", "Tip 14"),
+            listOf("Activity 13", "Activity 14")
+        )
 
-        var resources = listOf(resource1,resource2,resource3,resource4,resource5,resource6,resource7)
+        val resourcesList =
+            listOf(resource1, resource2, resource3, resource4, resource5, resource6, resource7)
 
-        var resourcesAdapter = ResourceAdapter(resources)
+        val resourcesAdapter = ResourceAdapter(resourcesList)
         binding.rvChildren.adapter = resourcesAdapter
     }
 }

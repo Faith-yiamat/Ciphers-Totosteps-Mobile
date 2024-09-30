@@ -58,4 +58,6 @@ dependencies {
     testImplementation (libs.junit)
     androidTestImplementation (libs.androidx.junit.v115)
     androidTestImplementation (libs.androidx.espresso.core.v351)
+    implementation ("com.squareup.picasso:picasso:2.71828")
+    implementation ("com.google.code.gson:gson:2.10.1")
 }

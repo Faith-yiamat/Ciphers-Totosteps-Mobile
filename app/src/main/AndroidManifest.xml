@@ -19,6 +19,9 @@
         android:theme="@style/Theme.TotoSteps"
         tools:targetApi="31">
         <activity
+            android:name=".activity.ResourceDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Assessement_child_resource"
             android:exported="false" />
         <activity

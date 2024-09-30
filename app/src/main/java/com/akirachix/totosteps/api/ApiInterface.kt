@@ -6,6 +6,7 @@ import com.akirachix.totosteps.models.LoginResponse
 import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.RegistrationResponse
 import com.akirachix.totosteps.models.UserRegistration
+import com.akirachix.totosteps.resources
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -23,6 +24,10 @@ interface ApiInterface {
 
     @GET("/api/questions/category/{category}/")
     suspend fun getQuestions(@Path("category") category: String): List<Question>
+
+
+    @GET("/api/resources")
+    suspend fun getResources(): Response<List<resources>>
 
 
 
