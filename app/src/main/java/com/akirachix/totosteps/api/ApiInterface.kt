@@ -1,6 +1,7 @@
 package com.akirachix.totosteps.api
 
 import com.akirachix.totosteps.models.Answer
+import com.akirachix.totosteps.models.AutismResultResponse
 import com.akirachix.totosteps.models.LoginRequest
 import com.akirachix.totosteps.models.LoginResponse
 import com.akirachix.totosteps.models.Milestone
@@ -14,6 +15,10 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import okhttp3.MultipartBody
+
+import retrofit2.http.Multipart
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiInterface {
@@ -32,6 +37,13 @@ interface ApiInterface {
 
     @GET("api/milestones/")
     fun getMilestones(): Call<List<Milestone>>
+
+    @Multipart
+    @POST("/api/results/")
+    fun uploadImage( @Part image: MultipartBody.Part): Call<AutismResultResponse>
+
+
+
 
 
 
