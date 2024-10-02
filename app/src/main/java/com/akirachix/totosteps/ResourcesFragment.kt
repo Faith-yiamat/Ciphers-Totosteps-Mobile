@@ -1,39 +1,61 @@
 package com.akirachix.totosteps
-import android.content.Intent
+
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.akirachix.totosteps.api.ApiClient
 import com.akirachix.totosteps.databinding.FragmentResourcesBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ResourcesFragment : Fragment() {
-
-    private var _binding: FragmentResourcesBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentResourcesBinding
+    private lateinit var resourceAdapter: ResourceAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentResourcesBinding.inflate(inflater, container, false)
-        val view = binding.root
+        binding = FragmentResourcesBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+//    viewModel.resources.observe(viewLifecycleOwner) { resourceList ->
+//        resourceAdapter.updateResources(resourceList)
+//    }
 
-        binding.assessmentCardView.setOnClickListener {
-            startActivity(Intent(activity, AssessmentResourcesAllActivity::class.java))
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        binding.milestoneCardView.setOnClickListener {
-            startActivity(Intent(activity, MilestonesResourcesAllActivity::class.java))
-        }
+        resourceAdapter = ResourceAdapter(listOf())
+        binding.rvChildren.layoutManager = LinearLayoutManager(context)
+        binding.rvChildren.adapter = resourceAdapter
 
-        return view
+        fetchResources()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun fetchResources() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = ApiClient.instance.getResources()
+                if (response.isSuccessful) {
+                    val resources = response.body() ?: emptyList()
+                    withContext(Dispatchers.Main) {
+                        resourceAdapter.updateResources(resources)
+                    }
+                } else {
+                    // Handle API error
+                    Log.e("API_ERROR", "Failed to fetch resources: ${response.message()}")
+                }
+            } catch (e: Exception) {
+                // Handle network error
+                Log.e("NETWORK_ERROR", "Error fetching resources: $e")
+            }
+        }
     }
 }

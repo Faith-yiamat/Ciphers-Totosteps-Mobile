@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ResourceDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvResourceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textAlignment="gravity"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nunito_extrabold"
+            android:textSize="36sp"
+            android:lineSpacingExtra="4dp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            android:textColor="#BB3A12"
+            android:fontFamily="@font/nunito_bold"
+            android:textAlignment="center"
+            android:text="@string/parental_tips_to_support_your_child_s_growth"
+            android:textSize="28sp"
+            android:lineSpacingExtra="2dp" />
+
+        <TextView
+            android:id="@+id/tvTips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nunito"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/nunito_bold"
+            android:textColor="#BB3A12"
+            android:textAlignment="center"
+            android:text="@string/activities_to_engage_with_your_child_for_better_growth"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:lineSpacingExtra="2dp" />
+
+        <TextView
+            android:id="@+id/tvActivities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/nunito"
+            android:textColor="@color/black"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="16dp" />
+
+    </LinearLayout>
+</ScrollView>

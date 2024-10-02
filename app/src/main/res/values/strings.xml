@@ -2,4 +2,6 @@
     <string name="app_name">TotoSteps</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="parental_tips_to_support_your_child_s_growth">Parental Tips to Support Your Child\'s Growth</string>
+    <string name="activities_to_engage_with_your_child_for_better_growth">Activities to Engage with your Child for Better Growth</string>
 </resources>
