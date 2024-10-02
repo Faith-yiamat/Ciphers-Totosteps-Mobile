@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnSignUp.setOnClickListener {
-            val intent = Intent(this, HomeScreenActivity::class.java)
+            val intent = Intent(this, ChildAccountActivity::class.java)
             startActivity(intent)
 
 
