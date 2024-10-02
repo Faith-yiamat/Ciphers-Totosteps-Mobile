@@ -1,36 +1,126 @@
 package com.akirachix.totosteps.activity
 
-import android.Manifest
+
+
+//import android.content.Intent
+//import android.os.Bundle
+//import androidx.appcompat.app.AppCompatActivity
+//import android.graphics.Bitmap
+//import android.net.Uri
+//import android.provider.MediaStore
+//import android.widget.Toast
+//import java.io.IOException
+//import android.view.View
+//import com.akirachix.totosteps.databinding.ActivityAutismUploadPhotoBinding
+//
+//class AutismUploadPhoto : AppCompatActivity() {
+//    lateinit var binding: ActivityAutismUploadPhotoBinding
+//
+//    val PICK_IMAGE_REQUEST = 1
+//    var selectedImageUri: Uri? = null
+//
+//
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        binding = ActivityAutismUploadPhotoBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+//
+//        // Set click listener for the upload button (image)
+//        binding.ivUpload.setOnClickListener {
+//            openImageChooser()
+//        }
+//
+//        // Back button functionality
+//        binding.ivBack.setOnClickListener {
+//            onBackPressed()
+//        }
+//
+//
+//        // Submit button functionality
+//        binding.btnSubmit.setOnClickListener {
+//            if (selectedImageUri != null) {
+//                submitImage()
+//            } else {
+//                Toast.makeText(this, "Please upload an image first", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
+//
+//    // Method to open the image picker
+//    fun openImageChooser() {
+//        val intent = Intent()
+//        intent.type = "image/*"
+//        intent.action = Intent.ACTION_GET_CONTENT
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
+//    }
+//
+//    // Handle the image result from the file picker
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
+//            selectedImageUri = data.data
+//            try {
+//                // Convert URI to Bitmap
+//                val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
+//                // Set the Bitmap to the ImageView using binding
+//                binding.ivUpload.setImageBitmap(bitmap)
+//            } catch (e: IOException) {
+//                e.printStackTrace()
+//                Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//    }
+//
+//    // Simulate image submission and show checkmark + success message
+//    fun submitImage() {
+//        // Hide the submit button
+//        binding.btnSubmit.visibility = View.GONE
+//
+//        // Show the transparent overlay with checkmark and success message
+//        binding.successOverlay.visibility = View.VISIBLE
+//
+//        // Delay for 2 seconds, then move to the next activity
+//        binding.successOverlay.postDelayed({
+//            // Hide the overlay (optional if you want to transition immediately)
+//            binding.successOverlay.visibility = View.GONE
+//
+//            // Start the next activity
+//            val intent = Intent(this, ViewAutismResultsActivity::class.java) // Replace NextActivity with your next activity class
+//            startActivity(intent)
+//
+//            // Optionally, if you don't want the user to come back to this screen, finish the current activity
+//            finish()
+//
+//        }, 2000)  // Adjust delay as needed (2 seconds in this case)
+//    }
+//}
+
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
+import android.net.Uri
 import android.provider.MediaStore
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.akirachix.totosteps.api.ApiInterface
-import com.akirachix.totosteps.databinding.ActivityAutismUploadPhotoBinding
-import com.akirachix.totosteps.models.AutismResultResponse
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
 import java.io.IOException
+import android.view.View
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.akirachix.totosteps.activity.viewModel.AutismUploadViewModel
+import com.akirachix.totosteps.activity.viewModel.UploadState
+import com.akirachix.totosteps.databinding.ActivityAutismUploadPhotoBinding
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import java.io.File
+import java.io.FileOutputStream
 
 class AutismUploadPhoto : AppCompatActivity() {
-    lateinit var binding: ActivityAutismUploadPhotoBinding
+    private lateinit var binding: ActivityAutismUploadPhotoBinding
+    private val viewModel: AutismUploadViewModel by viewModels()
 
     private val PICK_IMAGE_REQUEST = 1
-    private val PERMISSION_REQUEST_CODE = 101
     private var selectedImageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,31 +128,36 @@ class AutismUploadPhoto : AppCompatActivity() {
         binding = ActivityAutismUploadPhotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set click listener for the upload button (image)
-        binding.ivUpload.setOnClickListener {
-            if (checkStoragePermission()) {
-                openImageChooser()
-            } else {
-                requestStoragePermission()
-            }
-        }
+        binding.ivUpload.setOnClickListener { openImageChooser() }
+        binding.ivBack.setOnClickListener { onBackPressed() }
+        binding.btnSubmit.setOnClickListener { submitImage() }
 
-        // Back button functionality
-        binding.ivBack.setOnClickListener {
-            onBackPressed()
-        }
+        observeUploadState()
+    }
 
-        // Submit button functionality
-        binding.btnSubmit.setOnClickListener {
-            if (selectedImageUri != null) {
-                submitImage()
-            } else {
-                Toast.makeText(this, "Please upload an image first", Toast.LENGTH_SHORT).show()
+    private fun observeUploadState() {
+        lifecycleScope.launch {
+            viewModel.uploadState.collectLatest { state ->
+                when (state) {
+                    is UploadState.Idle -> {
+                        binding.btnSubmit.isEnabled = true
+                    }
+                    is UploadState.Loading -> {
+                        binding.btnSubmit.isEnabled = false
+                    }
+                    is UploadState.Success -> {
+                        showSuccessOverlay()
+                        navigateToResults(state.response.id)
+                    }
+                    is UploadState.Error -> {
+                        binding.btnSubmit.isEnabled = true
+                        Toast.makeText(this@AutismUploadPhoto, "Upload failed: ${state.message}", Toast.LENGTH_LONG).show()
+                    }
+                }
             }
         }
     }
 
-    // Method to open the image picker
     private fun openImageChooser() {
         val intent = Intent()
         intent.type = "image/*"
@@ -70,16 +165,15 @@ class AutismUploadPhoto : AppCompatActivity() {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
     }
 
-    // Handle the image result from the file picker
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
             selectedImageUri = data.data
             try {
-                // Convert URI to Bitmap and set it to ImageView
-                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
+                val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
                 binding.ivUpload.setImageBitmap(bitmap)
+                binding.btnSubmit.isEnabled = true
             } catch (e: IOException) {
                 e.printStackTrace()
                 Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
@@ -87,91 +181,48 @@ class AutismUploadPhoto : AppCompatActivity() {
         }
     }
 
-    // Method to submit the selected image
     private fun submitImage() {
         selectedImageUri?.let { uri ->
             val file = getFileFromUri(uri)
-
-            if (file != null && file.exists()) {
-                // Upload image file
-                val requestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
-                val body = MultipartBody.Part.createFormData("image", file.name, requestBody)
-                // Call your API here to upload the image
-                uploadImage(file) // This is your upload function
-            } else {
-                Toast.makeText(this, "File not found or cannot be opened", Toast.LENGTH_SHORT).show()
+            file?.let {
+                viewModel.uploadImage(it)
+            } ?: run {
+                Toast.makeText(this, "Failed to process the image", Toast.LENGTH_SHORT).show()
             }
-        } ?: Toast.makeText(this, "Please upload an image first", Toast.LENGTH_SHORT).show()
-    }
-
-    // Method to retrieve the file path from URI
-    private fun getFileFromUri(uri: Uri): File? {
-        val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = contentResolver.query(uri, filePathColumn, null, null, null)
-        cursor?.moveToFirst()
-
-        val columnIndex = cursor?.getColumnIndex(filePathColumn[0])
-        val filePath = cursor?.getString(columnIndex!!)
-        cursor?.close()
-
-        return filePath?.let { File(it) }
-    }
-
-    // Method to check storage permission
-    private fun checkStoragePermission(): Boolean {
-        return ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-    }
-
-    // Method to request storage permission
-    private fun requestStoragePermission() {
-        ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSION_REQUEST_CODE)
-    }
-
-    // Handle the permission request result
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openImageChooser()
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
-            }
+        } ?: run {
+            Toast.makeText(this, "Please select an image first", Toast.LENGTH_SHORT).show()
         }
     }
 
-
-    private fun uploadImage(file: File) {
-        val client = OkHttpClient.Builder().build()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://totosteps-29a482165136.herokuapp.com")
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(ApiInterface::class.java)
-
-        // Prepare image file
-        val requestFile: RequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
-        val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-
-        // Call the API
-        val call = apiService.uploadImage(body)
-        call.enqueue(object : Callback<AutismResultResponse> {
-            override fun onResponse(call: Call<AutismResultResponse>, response: Response<AutismResultResponse>) {
-                if (response.isSuccessful) {
-                    val result = response.body()?.result
-                    Toast.makeText(this@AutismUploadPhoto, "Result: $result", Toast.LENGTH_LONG).show()
-                    // Optionally, move to the next activity to show results
-                } else {
-                    Toast.makeText(this@AutismUploadPhoto, "Failed to get result", Toast.LENGTH_SHORT).show()
+    private fun getFileFromUri(uri: Uri): File? {
+        return try {
+            val inputStream = contentResolver.openInputStream(uri)
+            val file = File(cacheDir, "temp_image")
+            inputStream?.use { input ->
+                FileOutputStream(file).use { output ->
+                    input.copyTo(output)
                 }
-
             }
+            file
+        } catch (e: IOException) {
+            e.printStackTrace()
+            null
+        }
+    }
 
-            override fun onFailure(call: Call<AutismResultResponse>, t: Throwable) {
-                Toast.makeText(this@AutismUploadPhoto, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+    private fun showSuccessOverlay() {
+        binding.btnSubmit.visibility = View.GONE
+        binding.successOverlay.visibility = View.VISIBLE
+    }
+
+    private fun navigateToResults(resultId: String) {
+        binding.successOverlay.postDelayed({
+            binding.successOverlay.visibility = View.GONE
+            val intent = Intent(this, ViewAutismResultsActivity::class.java).apply {
+                putExtra("RESULT_ID", resultId)
             }
-        })
+            startActivity(intent)
+            finish()
+        }, 2000)
     }
 }
