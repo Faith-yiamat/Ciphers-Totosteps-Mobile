@@ -2,6 +2,7 @@ package com.akirachix.totosteps.api
 
 import com.akirachix.totosteps.models.Answer
 import com.akirachix.totosteps.models.AutismResultResponse
+import com.akirachix.totosteps.models.ChildData
 import com.akirachix.totosteps.models.LoginRequest
 import com.akirachix.totosteps.models.LoginResponse
 import com.akirachix.totosteps.models.Milestone
@@ -24,8 +25,10 @@ import retrofit2.http.Query
 interface ApiInterface {
 
     @POST("/auth/login/")
-    fun loginUser(@Body loginRequest: LoginRequest): Call<LoginResponse>
+    suspend fun loginUser(@Body loginRequest: LoginRequest): Response<LoginResponse>
+
     @POST("/api/register/")
+
     fun registerUser(@Body user: UserRegistration): Call<RegistrationResponse>
 
     @GET("/api/questions/category/{category}/")
@@ -41,6 +44,12 @@ interface ApiInterface {
     @Multipart
     @POST("/api/results/")
     fun uploadImage( @Part image: MultipartBody.Part): Call<AutismResultResponse>
+
+    @POST("/api/children/")
+    suspend fun createChild(@Body childData: ChildData): Response<ChildData>
+
+
+
 
 
 

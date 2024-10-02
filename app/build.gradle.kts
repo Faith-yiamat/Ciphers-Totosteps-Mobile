@@ -55,6 +55,7 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.kotlinx.coroutines.core.v171)
     implementation (libs.kotlinx.coroutines.android.v171)
+    implementation(libs.androidx.activity)
     testImplementation (libs.junit)
     androidTestImplementation (libs.androidx.junit.v115)
     androidTestImplementation (libs.androidx.espresso.core.v351)
