@@ -55,7 +55,10 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.kotlinx.coroutines.core.v171)
     implementation (libs.kotlinx.coroutines.android.v171)
+    implementation(libs.androidx.activity)
     testImplementation (libs.junit)
     androidTestImplementation (libs.androidx.junit.v115)
     androidTestImplementation (libs.androidx.espresso.core.v351)
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
 }
