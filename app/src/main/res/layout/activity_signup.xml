@@ -34,11 +34,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:background="@color/white"
             app:cardCornerRadius="30dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="620dp"
+                android:background="@color/white"
                 android:padding="16dp">
 
                 <TextView
@@ -47,6 +49,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="Create Account"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/nunito_black"
                     android:textSize="28dp"
                     android:textStyle="bold"
@@ -61,6 +64,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:hint="First Name"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
+                    android:backgroundTint="@color/black"
                     app:boxCornerRadiusTopStart="20dp"
                     app:boxCornerRadiusTopEnd="20dp"
                     app:boxCornerRadiusBottomStart="20dp"
@@ -72,6 +78,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFirstName"
                         android:layout_width="match_parent"
+                        android:textColor="@color/black"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_black"
                         />
@@ -85,6 +92,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="Last Name"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
                     app:boxCornerRadiusTopStart="20dp"
                     app:boxCornerRadiusTopEnd="20dp"
                     app:boxCornerRadiusBottomStart="20dp"
@@ -95,6 +104,7 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etLastName"
+                        android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_black"/>
@@ -108,6 +118,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="Email"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
                     app:boxCornerRadiusTopStart="20dp"
                     app:boxCornerRadiusTopEnd="20dp"
                     app:boxCornerRadiusBottomStart="20dp"
@@ -121,6 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/nunito_black"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -132,6 +145,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="Password"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
                     app:boxCornerRadiusTopStart="20dp"
                     app:boxCornerRadiusTopEnd="20dp"
                     app:boxCornerRadiusBottomStart="20dp"
@@ -146,6 +161,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/nunito_black"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -157,6 +173,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="Confirm Password"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
                     app:boxCornerRadiusTopStart="20dp"
                     app:boxCornerRadiusTopEnd="20dp"
                     app:boxCornerRadiusBottomStart="20dp"
@@ -171,6 +189,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/nunito_black"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -182,6 +201,7 @@
                     android:layout_marginTop="28dp"
                     android:backgroundTint="@color/purple"
                     android:text="Sign Up"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.382"
                     app:layout_constraintStart_toStartOf="parent"
@@ -193,6 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
                     android:text="Already have an account? Login"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.357"
                     app:layout_constraintStart_toStartOf="parent"
