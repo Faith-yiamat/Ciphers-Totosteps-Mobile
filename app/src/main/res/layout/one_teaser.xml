@@ -5,25 +5,29 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/whitetotologo" />
+        app:srcCompat="@drawable/anotherlogo" />
 
     <TextView
         android:id="@+id/textview1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="Welcome"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/nunito_extrabold"
-        android:textSize="30sp"
+        android:text="Welcome"
         android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -36,6 +40,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/nunito"
+        android:textColor="@color/black"
         android:text="Don't miss a moment. Track your child's milestones, celebrate their achievements, and ensure their development is on track. "
         android:textAlignment="center"
         android:textSize="20sp"
@@ -50,6 +55,7 @@
         android:layout_marginTop="56dp"
         android:fontFamily="@font/nunito_bold"
         android:text="Get Started"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:backgroundTint="#4C0033"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,6 +70,7 @@
         android:fontFamily="@font/nunito_semibold_italic"
         android:text="Start your journey with TotoSteps."
         android:textSize="20sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />

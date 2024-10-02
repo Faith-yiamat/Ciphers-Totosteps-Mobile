@@ -46,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
+            android:textColor="@color/black"
             android:text="Yes" />
 
         <RadioButton
@@ -54,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:fontFamily="@font/nunito"
+            android:textColor="@color/black"
             android:text="No" />
 
     </RadioGroup>
