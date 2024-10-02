@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.LoginActivity">
 
 
@@ -66,6 +67,8 @@
                     android:layout_height="63dp"
                     android:layout_marginTop="32dp"
                     android:hint="Email"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
                     app:boxBackgroundColor="@color/white"
                     app:boxCornerRadiusBottomEnd="20dp"
                     app:boxCornerRadiusBottomStart="20dp"
@@ -80,6 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/nunito_black"
+                        android:textColor="@color/black"
                         android:importantForAccessibility="yes"
                         android:inputType="textEmailAddress" />
 
@@ -92,6 +96,8 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="16dp"
                     android:hint="Password"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
                     app:boxBackgroundColor="@color/white"
                     app:boxCornerRadiusBottomEnd="20dp"
                     app:boxCornerRadiusBottomStart="20dp"
@@ -106,6 +112,7 @@
                         android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
+                        android:textColor="@color/black"
                         android:fontFamily="@font/nunito_black"
                         android:inputType="textPassword" />
 
