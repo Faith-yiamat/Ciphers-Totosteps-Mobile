@@ -149,3 +149,205 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/main"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".activity.ChildAccountActivity">-->
+
+<!--    &lt;!&ndash; ScrollView wrapping the layout &ndash;&gt;-->
+<!--    <ScrollView-->
+<!--        android:layout_width="436dp"-->
+<!--        android:layout_height="811dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.0">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <View-->
+<!--                android:id="@+id/purpleBackground"-->
+<!--                android:layout_width="461dp"-->
+<!--                android:layout_height="55dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:background="@color/purple"-->
+<!--                app:layout_constraintBottom_toBottomOf="@id/titleTextView"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="1.0" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/titleTextView"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="40dp"-->
+<!--                android:padding="16dp"-->
+<!--                android:text="Children"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:textSize="24sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.498"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/backArrow"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:padding="16dp"-->
+<!--                android:src="@drawable/backarrow"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/titleTextView" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/profileIcon"-->
+<!--                android:layout_width="132dp"-->
+<!--                android:layout_height="118dp"-->
+<!--                android:src="@drawable/profile"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.498"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/backArrow" />-->
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:id="@+id/cardView"-->
+<!--                android:layout_width="372dp"-->
+<!--                android:layout_height="328dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                app:cardBackgroundColor="@color/purple"-->
+<!--                app:cardCornerRadius="20dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/profileIcon">-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/usernameLayout"-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                        android:layout_width="348dp"-->
+<!--                        android:layout_height="62dp"-->
+<!--                        android:layout_marginTop="16dp"-->
+<!--                        android:hint="UserName"-->
+<!--                        android:textColorHint="@color/black"-->
+<!--                        app:boxBackgroundColor="@color/white"-->
+<!--                        app:boxCornerRadiusBottomEnd="15dp"-->
+<!--                        app:boxCornerRadiusBottomStart="15dp"-->
+<!--                        app:boxCornerRadiusTopEnd="15dp"-->
+<!--                        app:boxCornerRadiusTopStart="15dp"-->
+<!--                        app:boxStrokeColor="#FFFFFF"-->
+<!--                        app:hintTextColor="@color/black"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:placeholderTextColor="@color/black">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/usernameInput"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:inputType="text"-->
+<!--                            android:textColor="@color/black" />-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/dateOfBirthLayout"-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                        android:layout_width="348dp"-->
+<!--                        android:layout_height="60dp"-->
+<!--                        android:layout_marginTop="44dp"-->
+<!--                        android:hint="Date of Birth"-->
+<!--                        android:textColorHint="@color/black"-->
+<!--                        app:boxBackgroundColor="@color/white"-->
+<!--                        app:boxCornerRadiusBottomEnd="15dp"-->
+<!--                        app:boxCornerRadiusBottomStart="15dp"-->
+<!--                        app:boxCornerRadiusTopEnd="15dp"-->
+<!--                        app:boxCornerRadiusTopStart="15dp"-->
+<!--                        app:boxStrokeColor="#FFFFFF"-->
+<!--                        app:endIconDrawable="@drawable/calendar"-->
+<!--                        app:endIconMode="custom"-->
+<!--                        app:hintTextColor="@color/black"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/usernameLayout">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/dateOfBirthInput"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:inputType="date"-->
+<!--                            android:textColor="@color/black" />-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:id="@+id/parentLayout"-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                        android:layout_width="348dp"-->
+<!--                        android:layout_height="60dp"-->
+<!--                        android:layout_marginTop="44dp"-->
+<!--                        android:hint="Parent"-->
+<!--                        android:textColorHint="@color/black"-->
+<!--                        app:boxBackgroundColor="@color/white"-->
+<!--                        app:boxCornerRadiusBottomEnd="15dp"-->
+<!--                        app:boxCornerRadiusBottomStart="15dp"-->
+<!--                        app:boxCornerRadiusTopEnd="15dp"-->
+<!--                        app:boxCornerRadiusTopStart="15dp"-->
+<!--                        app:boxStrokeColor="#FFFFFF"-->
+<!--                        app:endIconMode="custom"-->
+<!--                        app:hintTextColor="@color/black"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/dateOfBirthLayout">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/parentInput"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:inputType="date"-->
+<!--                            android:textColor="@color/black" />-->
+
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            </com.google.android.material.card.MaterialCardView>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/saveButton"-->
+<!--                android:layout_width="143dp"-->
+<!--                android:layout_height="53dp"-->
+<!--                android:layout_marginTop="40dp"-->
+<!--                android:backgroundTint="@color/orange"-->
+<!--                android:fontFamily="@font/nunito_black"-->
+<!--                android:text="Save"-->
+<!--                android:textSize="24dp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/cardView" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </ScrollView>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
