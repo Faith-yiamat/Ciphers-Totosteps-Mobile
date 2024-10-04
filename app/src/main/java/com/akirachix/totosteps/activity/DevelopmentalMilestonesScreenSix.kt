@@ -108,7 +108,7 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
     private fun showAssessmentResultsDialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Assessment Results")
-            .setMessage("Please check your images for assessment results.")
+            .setMessage("Please check your email for assessment results.")
             .setPositiveButton("OK") { dialog: DialogInterface, _: Int ->
                 dialog.dismiss()
                 navigateToHomePage() // Navigate to homepage after dismissing the dialog.
@@ -129,6 +129,7 @@ class DevelopmentalMilestonesScreenSix : AppCompatActivity() {
         finish() // Optionally finish this activity so it's removed from the back stack.
     }
 }
+
 
 
 
