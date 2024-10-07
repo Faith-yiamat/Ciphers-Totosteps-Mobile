@@ -56,5 +56,16 @@ interface ApiInterface {
 //    suspend fun getChildrenByParent(@Path("parentId") parentId: Int): Response<List<ParentResponse>>
     suspend fun getChildrenByParent(@Path("parentId") parentId: Int): ChildrenResponse
 
-
+    @POST("/api/result/")
+    fun submitResult(@Body result: ResultData): Call<ResultResponse>
 }
+data class ResultData(
+    val milestone: Int,
+    val answers: Map<String, String>,
+    val user: Int
+)
+
+data class ResultResponse(
+    val success: Boolean,
+    val message: String
+)
