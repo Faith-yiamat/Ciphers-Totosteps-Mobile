@@ -1,8 +1,12 @@
 package com.akirachix.totosteps.api
 
+import com.akirachix.totosteps.ChildrenDataClass
+import com.akirachix.totosteps.activity.viewModel.ChildrenResponse
 import com.akirachix.totosteps.models.Answer
 import com.akirachix.totosteps.models.AutismResultResponse
+import com.akirachix.totosteps.models.AutismTestResult
 import com.akirachix.totosteps.models.ChildData
+import com.akirachix.totosteps.models.ChildResponse
 import com.akirachix.totosteps.models.LoginRequest
 import com.akirachix.totosteps.models.LoginResponse
 import com.akirachix.totosteps.models.Milestone
@@ -42,18 +46,15 @@ interface ApiInterface {
     fun getMilestones(): Call<List<Milestone>>
 
     @Multipart
-    @POST("/api/results/")
-    fun uploadImage( @Part image: MultipartBody.Part): Call<AutismResultResponse>
+    @POST("api/results/")
+    suspend fun uploadImage(@Query("child_id") childId: Int, @Part image: MultipartBody.Part): Response<AutismTestResult>
 
     @POST("/api/children/")
-    suspend fun createChild(@Body childData: ChildData): Response<ChildData>
+    suspend fun createChild(@Body childData: ChildData): Response<ChildResponse>
 
-
-
-
-
-
-
+    @GET("/api/parent/{parentId}/")
+//    suspend fun getChildrenByParent(@Path("parentId") parentId: Int): Response<List<ParentResponse>>
+    suspend fun getChildrenByParent(@Path("parentId") parentId: Int): ChildrenResponse
 
 
 }

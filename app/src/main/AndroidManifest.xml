@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TotoSteps"
         tools:targetApi="31"
+        android:enableOnBackInvokedCallback="true"
         android:name=".models.MyApplication">
         <activity
             android:name=".activity.AllActivities"
