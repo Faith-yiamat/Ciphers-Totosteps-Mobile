@@ -1,25 +1,30 @@
 package com.akirachix.totosteps.activity.viewModel
+
 //import android.app.Application
 //import androidx.lifecycle.AndroidViewModel
 //import androidx.lifecycle.LiveData
 //import androidx.lifecycle.MutableLiveData
 //import androidx.lifecycle.viewModelScope
 //import com.akirachix.totosteps.api.ApiClient
+//import com.akirachix.totosteps.api.ApiInterface
 //import com.akirachix.totosteps.models.LoginRequest
 //import kotlinx.coroutines.launch
 //import retrofit2.HttpException
 //
 //class LoginViewModel(application: Application) : AndroidViewModel(application) {
 //
-//
-//
 //    private val _loginResult = MutableLiveData<Result<String>>()
 //    val loginResult: LiveData<Result<String>> = _loginResult
 //
+//    private val apiService: ApiInterface? by lazy {
+//        try {
+//            ApiClient.instance
+//        } catch (e: UninitializedPropertyAccessException) {
+//            _loginResult.postValue(Result.failure(Throwable("API Client not initialized. Please restart the app.")))
+//            null
+//        }
+//    }
 //
-//    private val apiService = ApiClient.instance
-//
-//    // API Login Logic with Coroutines
 //    fun login(email: String, password: String) {
 //        if (!validateForm(email, password)) return
 //
@@ -27,7 +32,8 @@ package com.akirachix.totosteps.activity.viewModel
 //
 //        viewModelScope.launch {
 //            try {
-//                val response = apiService.loginUser(loginRequest) // Assuming login is a suspend function
+//                val api = safeApiCall() ?: return@launch
+//                val response = api.loginUser(loginRequest)
 //                if (response.isSuccessful && response.body()?.status == "success") {
 //                    _loginResult.postValue(Result.success(response.body()?.message ?: "Login successful"))
 //                } else {
@@ -41,13 +47,17 @@ package com.akirachix.totosteps.activity.viewModel
 //        }
 //    }
 //
+//    private fun safeApiCall(): ApiInterface? {
+//        return apiService ?: run {
+//            _loginResult.postValue(Result.failure(Throwable("API Client not available. Please restart the app.")))
+//            null
+//        }
+//    }
 //
-//
-//    // Validation Logic
 //    fun validateForm(email: String, password: String): Boolean {
 //        return when {
 //            email.isEmpty() -> {
-//                _loginResult.postValue(Result.failure(Throwable("Username is required")))
+//                _loginResult.postValue(Result.failure(Throwable("Email is required")))
 //                false
 //            }
 //            password.isEmpty() -> {
@@ -62,6 +72,7 @@ package com.akirachix.totosteps.activity.viewModel
 //        }
 //    }
 //}
+
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -70,13 +81,18 @@ import androidx.lifecycle.viewModelScope
 import com.akirachix.totosteps.api.ApiClient
 import com.akirachix.totosteps.api.ApiInterface
 import com.akirachix.totosteps.models.LoginRequest
+import com.akirachix.totosteps.models.LoginResponse
+import com.akirachix.totosteps.models.User
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _loginResult = MutableLiveData<Result<String>>()
-    val loginResult: LiveData<Result<String>> = _loginResult
+    private val _loginResult = MutableLiveData<Result<LoginResponse>>()
+    val loginResult: LiveData<Result<LoginResponse>> = _loginResult
+
+    private val _currentUser = MutableLiveData<User?>()
+    val currentUser: LiveData<User?> = _currentUser
 
     private val apiService: ApiInterface? by lazy {
         try {
@@ -97,7 +113,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 val api = safeApiCall() ?: return@launch
                 val response = api.loginUser(loginRequest)
                 if (response.isSuccessful && response.body()?.status == "success") {
-                    _loginResult.postValue(Result.success(response.body()?.message ?: "Login successful"))
+                    val loginResponse = response.body()!!
+                    _loginResult.postValue(Result.success(loginResponse))
+                    _currentUser.postValue(loginResponse.user)
                 } else {
                     _loginResult.postValue(Result.failure(Throwable(response.body()?.message ?: "Login failed")))
                 }
@@ -106,13 +124,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             } catch (e: Exception) {
                 _loginResult.postValue(Result.failure(Throwable("An error occurred: ${e.localizedMessage}")))
             }
-        }
-    }
-
-    private fun safeApiCall(): ApiInterface? {
-        return apiService ?: run {
-            _loginResult.postValue(Result.failure(Throwable("API Client not available. Please restart the app.")))
-            null
         }
     }
 
@@ -131,6 +142,13 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 false
             }
             else -> true
+        }
+    }
+
+    private fun safeApiCall(): ApiInterface? {
+        return apiService ?: run {
+            _loginResult.postValue(Result.failure(Throwable("API Client not available. Please restart the app.")))
+            null
         }
     }
 }

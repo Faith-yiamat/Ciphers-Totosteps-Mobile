@@ -45,12 +45,14 @@ android {
 }
 
 dependencies {
-    implementation (libs.androidx.core.ktx.v1120)
-    implementation (libs.androidx.appcompat.v161)
-    implementation (libs.material.v190)
+
+    implementation (libs.androidx.core.ktx)
+    implementation (libs.androidx.appcompat)
+    implementation (libs.material)
     implementation (libs.androidx.activity.ktx)
     implementation (libs.androidx.constraintlayout)
     implementation (libs.circleimageview)
+
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
     implementation (libs.kotlinx.coroutines.core.v171)
