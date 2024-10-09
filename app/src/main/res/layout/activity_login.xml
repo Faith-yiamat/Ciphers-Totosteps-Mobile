@@ -83,9 +83,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/nunito_black"
-                        android:textColor="@color/black"
                         android:importantForAccessibility="yes"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

@@ -21,6 +21,12 @@
         android:enableOnBackInvokedCallback="true"
         android:name=".models.MyApplication">
         <activity
+            android:name="ChildrenAdapter"
+            android:exported="false"/>
+        <activity
+            android:name="ChildrenFragment"
+            android:exported="false"/>
+        <activity
             android:name=".activity.AllActivities"
             android:exported="false" />
         <activity
