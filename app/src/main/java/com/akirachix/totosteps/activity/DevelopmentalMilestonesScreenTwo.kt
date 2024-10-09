@@ -11,10 +11,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.akirachix.totosteps.activity.viewModel.DevelopmentalMilestoneViewModel
 import com.akirachix.totosteps.databinding.ActivityDevelopmentalMilestonesScreenTwoBinding
 import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.QuestionsAdapter
-import com.akirachix.totosteps.activity.viewModel.DevelopmentalMilestoneViewModel
 
 class DevelopmentalMilestonesScreenTwo : AppCompatActivity() {
     private lateinit var binding: ActivityDevelopmentalMilestonesScreenTwoBinding

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
 
-            val intent = Intent(this, TeaserOne::class.java)
+            val intent = Intent(this, TeaserTwoActivity::class.java)
             startActivity(intent)
 
             finish()

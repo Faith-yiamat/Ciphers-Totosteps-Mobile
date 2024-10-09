@@ -1,7 +1,6 @@
 package com.akirachix.totosteps.api
 
 import com.akirachix.totosteps.ChildrenDataClass
-import com.akirachix.totosteps.activity.viewModel.ChildrenResponse
 import com.akirachix.totosteps.models.Answer
 import com.akirachix.totosteps.models.AutismResultResponse
 import com.akirachix.totosteps.models.AutismTestResult
@@ -10,6 +9,7 @@ import com.akirachix.totosteps.models.ChildResponse
 import com.akirachix.totosteps.models.LoginRequest
 import com.akirachix.totosteps.models.LoginResponse
 import com.akirachix.totosteps.models.Milestone
+import com.akirachix.totosteps.models.ParentResponse
 import com.akirachix.totosteps.models.Question
 import com.akirachix.totosteps.models.RegistrationResponse
 import com.akirachix.totosteps.models.UserRegistration
@@ -54,7 +54,9 @@ interface ApiInterface {
 
     @GET("/api/parent/{parentId}/")
 //    suspend fun getChildrenByParent(@Path("parentId") parentId: Int): Response<List<ParentResponse>>
-    suspend fun getChildrenByParent(@Path("parentId") parentId: Int): ChildrenResponse
+    suspend fun getChildrenByParent(@Path("parentId") parentId: Int): ChildResponse
 
+    @GET("api/parent/{parentId}/")
+    suspend fun getParentData(@Path("parentId") parentId: Int): ParentResponse
 
 }
